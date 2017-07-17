@@ -57,17 +57,17 @@ runtests: testDrawCard
 unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 	./cardtest1 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./cardtest2 >> unittestresult.out
+	./cardtest2 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./cardtest3 >> unittestresult.out
+	./cardtest3 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./cardtest4 >> unittestresult.out
+	./cardtest4 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./unittest1 >> unittestresult.out
+	./unittest1 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./unittest2 >> unittestresult.out
+	./unittest2 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
-	./unittest3 >> unittestresult.out
+	./unittest3 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest4 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
