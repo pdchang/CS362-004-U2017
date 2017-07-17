@@ -28,7 +28,8 @@ Creating 'dominion.c.gcov'
 Test 1: Check how many cards adventurer adds
 hand count = 6, expected = 6
 TEST: +1 Net Gain of Cards Failed
-Test 2: Check to see if cards added are adventurer cardsTEST: Added cards were treasure cards Failed
+Test 2: Check to see if cards added are adventurer cards
+TEST: Added cards were treasure cards Failed
 Test 3: Check it came from player's Deck
 deck count = 4, expected = 3
 TEST: Player drew from own deck Failed
