@@ -59,7 +59,7 @@ printf("Test 1: Check how many cards adventurer adds\n");
 printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + 1);
 asserttrue(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + 2, "+1 Net Gain of Cards");
 //test2 - make sure the last 2 cards were treasure cards
-printf("Test 2: Check to see if cards added are adventurer cards");
+printf("Test 2: Check to see if cards added are adventurer cards\n");
 for(i = 0; i < G.handCount[thisPlayer]; i++){
   if (G.hand[thisPlayer][i] == copper || silver || gold){
     treasureG++;
