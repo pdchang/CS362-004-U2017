@@ -55,22 +55,22 @@ runtests: testDrawCard
 
 #run tests for unit out
 unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
-	./cardtest1 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	./cardtest1 >> unittestresults.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./cardtest2 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./cardtest3 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./cardtest4 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./unittest1 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./unittest2 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
 	./unittest3 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
-	./unittest4 >> unittestresult.out
-	gcov -b -c dominion.c >> unittestresult.out
+	gcov -b -c dominion.c >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov -b -c dominion.c >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
