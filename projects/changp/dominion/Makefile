@@ -54,7 +54,7 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 #run tests for unit out
-unittestresult: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
+unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 	./cardtest1 >> unittestresult.out
 	gcov -b -c dominion.c >> unittestresult.out
 	./cardtest2 >> unittestresult.out
