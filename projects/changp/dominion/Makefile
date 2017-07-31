@@ -64,7 +64,7 @@ unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2
 	./cardtest4 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest1 >> unittestresults.out
-	gcov -b -c dominion.c >> unittestresults.o./raut
+	gcov -b -c dominion.c >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest3 >> unittestresults.out
