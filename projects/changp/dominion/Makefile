@@ -64,13 +64,36 @@ unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2
 	./cardtest4 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest1 >> unittestresults.out
-	gcov -b -c dominion.c >> unittestresults.out
+	gcov -b -c dominion.c >> unittestresults.o./raut
 	./unittest2 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
 	./unittest4 >> unittestresults.out
 	gcov -b -c dominion.c >> unittestresults.out
+#make the card stuff
+#adventurer card
+randomtest: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+#random test 1 - smithy
+randomtest1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+#random test 2 - village
+randomtest2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+#random tests output
+randomtestvillage.out: randomtestcard1
+	./randomtestcard1 >> randomtestcard1.out
+	gcov -b -c dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+randomtestsmithy.out: randomtestcard2
+	./randomtestcard2 >> randomtestcard2.out
+	gcov -b -c dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b -c dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -79,3 +102,4 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard cardtest1 cardtest2
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe cardtest1 cardtest1.exe cardtest2 cardtest2.exe cardtest3 cardtest3.exe cardtest4 cardtest4.exe unittest1 unittest1.exe unittest2 unittest2.exe unittest3 unittest3.exe unittest4 unittest4.exe
+	rm -f randomtest*.exe
