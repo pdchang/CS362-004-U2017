@@ -40,6 +40,7 @@ int seed;//randomize this
 int numPlayers; //randomize this between 2 and 4
 int thisPlayer;
 int test_count = 0;
+int checkactions = 2;
 struct gameState G, testG;
 int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
   sea_hag, tribute, smithy, council_room};
