@@ -106,8 +106,7 @@ deck count = 2, expected = 3
 TEST: Player drew from own deck Failed
 
 
-Pointer: drawCard() probably has something wrong with it. The only thing that can possibily screw up the the way it works is the drawcard() function.
-Look for bug in this.
+Pointer: check the number of drawn cards if it matches the right parameters
 
 Title: buyCard(), bought card is in player's deck
 
