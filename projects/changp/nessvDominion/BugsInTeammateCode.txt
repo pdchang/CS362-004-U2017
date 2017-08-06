@@ -1,0 +1,219 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: Adventurer Card Check to see if cards came from player's deck
+
+Class: Serious Bug
+
+
+Date: 07/30/2017
+Reported By: Philip Chang
+Email: changp@oregonstate.edu
+
+
+Product: adventurercard()
+Platform: FLIP
+
+
+Is it reproducible: Yes
+
+Description
+===========
+Adventurer Card drew the cards to find the treasures cards did not come from one's own deck
+
+
+Steps to Produce/Reproduce
+--------------------------
+1. Setup and intialize game states, 2 of the be the same
+2. Put adventurer card into player's hand of test game state
+3. Play the adventurer card using adventurercard() or cardeffect() of test game state
+4. Check the number of cards in deck matches up to the non test game state minus 2
+
+
+Expected Results
+----------------
+2 less cards in deck
+
+
+Actual Results
+--------------
+3 less cards in deck
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+dominion.c.gcov of call_adventurer
+__________________________________
+function call_adventurer called 502 returned 100% blocks executed 100%
+      502: 1274:void call_adventurer(struct gameState *state, int handPos) {
+      502: 1275:  state->numActions--;
+        -: 1276:  int cardDrawn;
+      502: 1277:  int z = 0;
+      502: 1278:  int currentPlayer = whoseTurn(state);
+call    0 returned 502
+      502: 1279:  int nextPlayer = currentPlayer + 1;
+        -: 1280:  int temphand[MAX_HAND];// moved above the if statement
+      502: 1281:  int drawntreasure = 0;
+        -: 1282:
+    14645: 1283:  while(drawntreasure<3) {
+branch  0 taken 13641
+branch  1 taken 502 (fallthrough)
+    13641: 1284:    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+branch  0 taken 47 (fallthrough)
+branch  1 taken 13594
+       47: 1285:      shuffle(currentPlayer, state);
+call    0 returned 47
+        -: 1286:    }
+    13641: 1287:    drawCard(currentPlayer, state);
+call    0 returned 13641
+    13641: 1288:    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    13641: 1289:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 12135 (fallthrough)
+branch  1 taken 1506
+branch  2 taken 12135 (fallthrough)
+branch  3 taken 0
+branch  4 taken 0 (fallthrough)
+branch  5 taken 12135
+     1506: 1290:      drawntreasure++;
+        -: 1291:    else{
+    12135: 1292:      temphand[z]=cardDrawn;
+    12135: 1293:      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+    12135: 1294:      z++;
+        -: 1295:    }
+        -: 1296:  }
+        -: 1297:
+    13641: 1298:  while(z>=0){
+branch  0 taken 12637
+branch  1 taken 502 (fallthrough)
+    12637: 1299:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    12637: 1300:    z=z-1;
+        -: 1301:  }
+      502: 1302:    discardCard(handPos, currentPlayer, state, 0);
+call    0 returned 502
+      502: 1303:}
+        -: 1304:
+
+
+unittestresults.out of Adventurer
+__________________________________________
+Test 3: Check it came from player's Deck
+deck count = 2, expected = 3
+TEST: Player drew from own deck Failed
+
+
+Pointer: drawCard() probably has something wrong with it. The only thing that can possibily screw up the the way it works is the drawcard() function.
+Look for bug in this.
+
+Title: buyCard(), bought card is in player's deck
+
+Class: Serious Bug
+
+
+Date: 07/30/2017
+Reported By: Philip Chang
+Email: changp@oregonstate.edu
+
+
+Product: buycard()
+Platform: FLIP
+
+
+Is it reproducible: Yes
+
+Description
+===========
+buyCard() function buys card from supply and once the card is bought it should be put
+in player's deck
+
+
+Steps to Produce/Reproduce
+--------------------------
+1. Setup and intialize game states, 2 of the be the same
+2. Buy a province card using buycard()
+3. Check whole deck to see if province card is there
+4. If not found, flag is not set, and thus card is not in the deck
+
+
+Expected Results
+----------------
+Card in Deck
+
+
+Actual Results
+--------------
+Card is not in deck
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+dominion.c.gcov of buyCard()
+__________________________________
+function buyCard called 4 returned 100% blocks executed 100%
+        4:  272:int buyCard(int supplyPos, struct gameState *state) {
+        -:  273:  int who;
+        -:  274:  if (DEBUG){
+        -:  275:    printf("Entering buyCard...\n");
+        -:  276:  }
+        -:  277:
+        -:  278:  // I don't know what to do about the phase thing.
+        -:  279:
+        4:  280:  who = state->whoseTurn;
+        -:  281:
+        4:  282:  if (state->numBuys < 1){
+branch  0 taken 1 (fallthrough)
+branch  1 taken 3
+        -:  283:    if (DEBUG)
+        -:  284:      printf("You do not have any buys left\n");
+        1:  285:    return -1;
+        3:  286:  } else if (supplyCount(supplyPos, state) <1){
+call    0 returned 3
+branch  1 taken 1 (fallthrough)
+branch  2 taken 2
+        -:  287:    if (DEBUG)
+        -:  288:      printf("There are not any of that type of card left\n");
+        1:  289:    return -1;
+        2:  290:  } else if (state->coins < getCost(supplyPos)){
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1
+        -:  291:    if (DEBUG)
+        -:  292:      printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
+        1:  293:    return -1;
+        -:  294:  } else {
+        1:  295:    state->phase=1;
+        -:  296:    //state->supplyCount[supplyPos]--;
+        1:  297:    gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+call    0 returned 1
+        -:  298:
+        1:  299:    state->coins = (state->coins) - (getCost(supplyPos));
+call    0 returned 1
+        1:  300:    state->numBuys--;
+        -:  301:    if (DEBUG)
+        -:  302:      printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
+        -:  303:  }
+        -:  304:
+        -:  305:  //state->discard[who][state->discardCount[who]] = supplyPos;
+        -:  306:  //state->discardCount[who]++;
+        -:  307:
+        1:  308:  return 0;
+        -:  309:}
+        -:  310:
+
+
+
+unittestresults.out of buycard()
+__________________________________________
+Test 4: Check if you buy the card with right parameters, it goes to deck
+TEST: Bought  Card is in deck Failed
+
+Pointer:

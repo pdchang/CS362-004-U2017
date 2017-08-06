@@ -1,0 +1,198 @@
+----------------- Testing Card: smithy ----------------
+Test 1: +3 Cards and discard smithy
+hand count = 7, expected = 7
+TEST: +2 Net Gain of Cards SUCCESSFULLY Completed
+Test 2: Check it came from player's Deck 
+deck count = 2, expected = 2
+TEST: Player drew from own deck SUCCESSFULLY Completed
+Test 3: Check to make sure smithy was discarded after being played
+played count = 1, expected = 2
+TEST: Smithy was the used card SUCCESSFULLY Completed
+TEST: Card was Played SUCCESSFULLY Completed
+Test 4: Check to make sure its still the player's turn
+expected player = 0, current player = 0
+TEST: Still the current player's turn SUCCESSFULLY Completed
+Test 5: Check to see after playing the card there are no more actions
+TEST: No actions left after playing card SUCCESSFULLY Completed
+
+ >>>>> Only 6 / 5 tests have passed
+
+File 'dominion.c'
+Lines executed:20.28% of 577
+Branches executed:22.78% of 417
+Taken at least once:13.91% of 417
+Calls executed:11.88% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing Card: adventurer ----------------
+Test 1: Check how many cards adventurer adds
+hand count = 7, expected = 6
+TEST: +1 Net Gain of Cards SUCCESSFULLY Completed
+Test 2: Check to see if cards added are adventurer cards
+TEST: Added cards were treasure cards SUCCESSFULLY Completed
+Test 3: Check it came from player's Deck 
+deck count = 2, expected = 3
+TEST: Player drew from own deck Failed
+Test 4: Check to make sure its still the player's turn
+expected player = 0, current player = 0
+TEST: Still the current player's turn SUCCESSFULLY Completed
+Test 5: Check to see after playing the card there are no more actions
+TEST: No actions left after playing card SUCCESSFULLY Completed
+Test 6: Check to make sure adventurer was discarded after being played
+played count = 1, expected = 2
+TEST: Adventurer was the used card SUCCESSFULLY Completed
+TEST: Card was Played SUCCESSFULLY Completed
+
+ >>>>> SUCCESS: Testing complete adventurer <<<<<
+
+File 'dominion.c'
+Lines executed:23.57% of 577
+Branches executed:24.70% of 417
+Taken at least once:15.59% of 417
+Calls executed:15.84% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing Card: council_room ----------------
+Test 1: Check how many cards council_room adds
+hand count = 8, expected = 8
+TEST: +3 Net Gain of Cards SUCCESSFULLY Completed
+Test2: Check if other player gained cards
+other hand count = 1, expected = 1 
+TEST: Other Player gained a card too SUCCESSFULLY Completed
+Test 3: Check to see after playing the card there are no more actions
+TEST: No actions left after playing card SUCCESSFULLY Completed
+Test 4: Check to make sure its still the player's turn
+expected player = 0, current player = 0
+TEST: Still the current player's turn SUCCESSFULLY Completed
+Test 5: Check to make sure council_room added a buy
+num buys = 2, expected num buys = 2
+TEST: check the num buys SUCCESSFULLY Completed
+Test 6: Check to make sure adventurer was discarded after being played
+played count = 1, expected = 2
+TEST: council_room was the used card SUCCESSFULLY Completed
+TEST: Card was Played SUCCESSFULLY Completed
+
+ >>>>> Only 7 / 6 tests have passed
+
+File 'dominion.c'
+Lines executed:25.82% of 577
+Branches executed:26.14% of 417
+Taken at least once:17.03% of 417
+Calls executed:20.79% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing Card: village ----------------
+Test 1: Check how many cards village adds
+hand count = 5, expected = 5
+TEST:  Zero Net Gain of Cards SUCCESSFULLY Completed
+Test 2: Check number of actionsnum actions = 2, expected num of actions 2
+TEST: +2 actions are added SUCCESSFULLY Completed
+Test 3: Check to make sure its still the player's turn
+expected player = 0, current player = 0
+TEST: Still the current player's turn SUCCESSFULLY Completed
+Test 4: Check it came from player's Deck 
+deck count = 4, expected = 4
+TEST: Player drew from own deck SUCCESSFULLY Completed
+Test 5: Check to make sure smithy was discarded after being played
+played count = 1, expected = 2
+TEST: village was the used card SUCCESSFULLY Completed
+TEST: Card was Played SUCCESSFULLY Completed
+
+ >>>>> Only 6 / 5 tests have passed
+
+File 'dominion.c'
+Lines executed:27.38% of 577
+Branches executed:26.14% of 417
+Taken at least once:17.27% of 417
+Calls executed:24.75% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing FUNCTION: isGameOver() ----------------
+Test 1: Check to see if province is empty, then game will end
+TEST: Game is Over with empty province supply SUCCESSFULLY Completed
+Test 2: Check to see if province is not empty, game will continue
+TEST: Game is not over with province cards left SUCCESSFULLY Completed
+TEST: Game is not over with province cards left SUCCESSFULLY Completed
+TEST: Game is not over with province cards left SUCCESSFULLY Completed
+Test 3: Check to see if there are 3 supply counts that are empty than game ends
+TEST: 3 Empty Supply Count means game ends SUCCESSFULLY Completed
+Test 4: If no supply piles are empty, then game should continue 
+TEST: All supply piles not empty, so game continues SUCCESSFULLY Completed
+
+ >>>>> SUCCESS: Testing complete isGameOver() <<<<<
+
+File 'dominion.c'
+Lines executed:29.12% of 577
+Branches executed:28.06% of 417
+Taken at least once:19.18% of 417
+Calls executed:24.75% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing FUNCTION: whoseTurn() ----------------
+Test 1: Check to make sure thisPlayer or player 0 is the person's turn
+TEST: Start of game is Player 0's turn SUCCESSFULLY Completed
+Test 2: If you end turn, then it should be other player's turn
+TEST: Player has switched turns SUCCESSFULLY Completed
+Test 2: End other player's turn, whose turn should be player 0
+TEST: Turn has turned back to first player SUCCESSFULLY Completed
+
+ >>>>> SUCCESS: Testing complete whoseTurn() <<<<<
+
+File 'dominion.c'
+Lines executed:32.58% of 577
+Branches executed:29.50% of 417
+Taken at least once:20.62% of 417
+Calls executed:27.72% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing FUNCTION: updateCoins() ----------------
+Test 1: Check to see if it knows 5 copper is worth 5
+TEST: Update Coins is working SUCCESSFULLY Completed
+TEST: 5 Copper coins is worth 5 SUCCESSFULLY Completed
+Test 2: Check to see if it knows 5 silver is worth 10
+TEST: Update Coins is working SUCCESSFULLY Completed
+TEST: 5 Silver Coins is worth 10 SUCCESSFULLY Completed
+Test 3: Check to see if it knows 5 gold is worth 15
+TEST: Update Coins is working SUCCESSFULLY Completed
+TEST: 5 Silver Coins is worth 10 SUCCESSFULLY Completed
+Test 4: Check to see if it knows 2 copper,2 silver, 1gold is worth 9
+TEST: Update Coins is working SUCCESSFULLY Completed
+TEST: 2 Copper, 2 Silver, 1 gold is worth 9 SUCCESSFULLY Completed
+Test 5: Check to see if 2c, 2s, 1g, and 10 bonus is worth 19
+TEST: Update Coins is working SUCCESSFULLY Completed
+TEST: 2 Copper, 2 Silver, 1 gold, and 10 bonus is worth 19 SUCCESSFULLY Completed
+
+ >>>>> SUCCESS: Testing complete updateCoins() <<<<<
+
+File 'dominion.c'
+Lines executed:32.93% of 577
+Branches executed:29.50% of 417
+Taken at least once:21.10% of 417
+Calls executed:27.72% of 101
+Creating 'dominion.c.gcov'
+
+----------------- Testing FUNCTION: buyCard() ----------------
+Test 1: Check if you have no buys are you still able to buy a card
+TEST: If no buys, then you can't buy SUCCESSFULLY Completed
+Test 2: If we have no supply of province, we can't buy it
+TEST: If no supply of province, can't buy province SUCCESSFULLY Completed
+Test 3: Not enough money to buy
+TEST: if you dont have money, you can't buy SUCCESSFULLY Completed
+Test 4: Check if you buy the card with right parameters, it goes to deck
+TEST: Bought  Card is in deck Failed
+Test 5: See if numBuys went down to 0
+TEST: numBuys is zero SUCCESSFULLY Completed
+Test 6: check to see if we have less province cards, by 1
+TEST: there are now one less province cards SUCCESSFULLY Completed
+Test 7: check to see num coins reduced from 10 to 2
+TEST: num coins has been reduced by 8, the cost of province SUCCESSFULLY Completed
+
+ >>>>> Only 6 / 7 tests have passed
+
+File 'dominion.c'
+Lines executed:37.44% of 577
+Branches executed:39.09% of 417
+Taken at least once:23.50% of 417
+Calls executed:32.67% of 101
+Creating 'dominion.c.gcov'
+
