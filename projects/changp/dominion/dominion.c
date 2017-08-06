@@ -1239,7 +1239,7 @@ void smithyCard(int handPos, struct gameState *state){
     int currentPlayer = whoseTurn(state);//get current player
     int i;
     //draw 3 cards
-    for (i = 0; i < 3; i--){
+    for (i = 0; i < 3; i++){ //changed back to i++
       drawCard(currentPlayer, state);
     }
     //discard card from hand
