@@ -1,1 +1,1 @@
-The projects directory should contain your onid (e.g., aburasa) folder 
+assignment 5 submissions changp - randomtests,unittests,cardtests on nessv's
